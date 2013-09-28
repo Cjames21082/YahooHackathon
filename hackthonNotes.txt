@@ -1,0 +1,69 @@
+NODE.JS
+=============
+
+NPM- Node package manager
+* can control hardware w/ js
+
+node.js + github + travis + heroku 
+
+DevTools:
+hub- brew install hub || gem install hub
+
+travis
+	* gem install travis
+	* will test code, pull requests, free platform
+
+heroku - https://toolbelt.heroku.com
+
+DATA MEETS DESIGN
+=================
+
+breakdown:
+navigation
+	- user intent
+	- frictionless experience
+recommendation
+	- personalization
+		understanding user interaction
+	- localization
+	- cutomization
+		allowing users to express their interest
+presentation
+	- clarity
+	- emotional
+	- details
+
+YQL = Yahoo Query Language
+==========================
+
+YQL Console
+- community tables
+
+query language:
+select {what}
+from {service}
+where {condition}
+
+example:
+select title, description
+from feed
+where in (
+"http//feeds.feedburner.com/TechCrucnch/")
+| sort (
+	puDate = xxx
+	)
+
+https://github.com/yql
+
+
+
+
+PURE
+=====
+
+on Yahoo CDN
+purecss.io
+Control CSS Animations and Transitions
+
+via link, bower, yomen
+
