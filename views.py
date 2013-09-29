@@ -3,6 +3,7 @@ from flask import Flask, render_template, redirect
 import urllib
 
 app = Flask(__name__)
+ACCESS_TOKEN = 
 
 @app.route('/')
 def hello():
@@ -16,7 +17,7 @@ def hello():
 	query = urllib.quote(query)
 	print(query) 
 
-	url = "https://graph.facebook.com/fql?q=" + query
+	url = "https://graph.facebook.com/fql?q=" + query?&access_token = ACCESS_TOKEN
 	data = urllib.urlopen(url).read()
 	print(data)
 	
