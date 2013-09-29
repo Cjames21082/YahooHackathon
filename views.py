@@ -4,6 +4,7 @@ import facebook
 import base64
 import urllib
 import urllib2
+import json
 
 
 SECRET_KEY = 'development key'
