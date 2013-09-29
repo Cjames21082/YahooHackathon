@@ -7,7 +7,7 @@ app = Flask(__name__)
 @app.route('/')
 def hello():
 
-	query = "SELECT page_id, name, location FROM page WHERE page_id IN\
+	query = "SELECT location FROM page WHERE page_id IN\
 			(SELECT page_id FROM location_post WHERE author_uid IN\
 			(SELECT uid2 FROM friend WHERE uid1=me()))"
 
@@ -26,5 +26,5 @@ def hello():
 
 
 
-if __name__ == "__main__":
-	app.run(debug = True)
+# if __name__ == "__main__":
+# 	app.run(debug = True)
