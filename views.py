@@ -31,14 +31,12 @@ fb = oauth.remote_app('facebook',
 @app.route('/')
 def index():
 
-    access_token = facebook.get_app_access_token(FACEBOOK_APP_ID, FACEBOOK_APP_SECRET)
-    graph = facebook.GraphAPI(access_token)
-    user = graph.get_object("me")
-    friends = graph.get_connections(user["id"], "friends")
+    # graph = facebook.GraphAPI(access_token)
+    # user = graph.get_object("me")
+    # friends = graph.get_connections(user["id"], "friends")
     
 
-    return render_template('index.html',
-                            friends= friends)
+    return render_template('index.html')
 
 
 # @app.route('/login')
