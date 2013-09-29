@@ -1,6 +1,9 @@
 from flask import Flask, redirect, url_for, session, request, render_template
 # from flask_oauth import OAuth
 import facebook
+import base64
+import urllib
+import urllib2
 
 
 SECRET_KEY = 'development key'
@@ -30,15 +33,27 @@ app.secret_key = SECRET_KEY
 
 @app.route('/')
 def index():
-    user = facebook.get_user_from_cookie(request.cookies, FACEBOOK_APP_ID, FACEBOOK_APP_SECRET)
-    if user:
-        graph = facebook.GraphAPI(user["access_token"])
-        profile = graph.get_object("me")
-        friends = graph.get_connections("me", "friends")
-    else:
-        friends = None
+
+    cookie = request.cookies.get("fbsr_" + FACEBOOK_APP_ID)
+    friends = None
+    if cookie:
+        encoded_sig, payload = map(str, cookie.split('.', 1))
+        sig = base64.urlsafe_b64decode(encoded_sig + "=" * ((4 - len(encoded_sig) % 4) % 4))
+        data = base64.urlsafe_b64decode(payload + "=" * ((4 - len(payload) % 4) % 4))
+
+        json.loads(data)
+        user = facebook.get_access_token_from_code(data["code"], "", FACEBOOK_APP_ID. FACEBOOK_APP_SECRET)
+    # user = facebook.get_user_from_cookie(request.cookies, FACEBOOK_APP_ID, FACEBOOK_APP_SECRET)
+        if user:
+            graph = facebook.GraphAPI(user["access_token"])
+            profile = graph.get_object("me")
+            friends = graph.get_connections("me", "friends")
+
     return render_template('index.html',
                             friends= friends)
+
+
+
 
 
 # @app.route('/login')
