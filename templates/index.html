@@ -48,17 +48,7 @@
 			    });
 			  };
 
-			  function testPosts() {
-			  	FB.api('/platform/posts', { limit: 3 }, function(response) {
-				  for (var i=0, l=response.length; i<l; i++) {
-				    var post = response[i];
-				    if (post.message) {
-				      alert('Message: ' + post.message);
-				    } else if (post.attachment && post.attachment.name) {
-				      alert('Attachment: ' + post.attachment.name);
-				    }
-				  }
-				});
+
 			</script>
 
 	<!-- Login -->
