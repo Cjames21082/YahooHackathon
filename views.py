@@ -1,31 +1,58 @@
-import os
-from flask import Flask, render_template, redirect
-import urllib
+from flask import Flask, redirect, url_for, session, request, render_template
+from flask_oauth import OAuth
+
+
+SECRET_KEY = 'development key'
+DEBUG = True
+FACEBOOK_APP_ID = '657737804244482'
+FACEBOOK_APP_SECRET = '	91e4d3b34430f67d65ad7ee76af65d28'
+
 
 app = Flask(__name__)
-ACCESS_TOKEN = 
+app.debug = DEBUG
+app.secret_key = SECRET_KEY
+oauth = OAuth()
+
+facebook = oauth.remote_app('facebook',
+    base_url='https://graph.facebook.com/',
+    request_token_url=None,
+    access_token_url='/oauth/access_token',
+    authorize_url='https://www.facebook.com/dialog/oauth',
+    consumer_key=FACEBOOK_APP_ID,
+    consumer_secret=FACEBOOK_APP_SECRET,
+    request_token_params={'scope': 'email'}
+)
+
+@facebook.tokengetter
+def get_facebook_token():
+	return session.get('oauth_token')
 
 @app.route('/')
-def hello():
-
-	query = "SELECT location FROM page WHERE page_id IN\
-			(SELECT page_id FROM location_post WHERE author_uid IN\
-			(SELECT uid2 FROM friend WHERE uid1=me()))"
-
-	print query
-
-	query = urllib.quote(query)
-	print(query) 
-
-	url = "https://graph.facebook.com/fql?q=" + query?&access_token = ACCESS_TOKEN
-	data = urllib.urlopen(url).read()
-	print(data)
-	
- 
-	return render_template('index.html',
-							data= data)
+def index():
+    return render_template('index.html')
 
 
+@app.route('/login')
+def login():
+    return facebook.authorize(callback=url_for('facebook_authorized',
+        next=request.args.get('next') or request.referrer or None,
+        _external=True))
 
-if __name__ == "__main__":
-	app.run(debug = True)
+
+@app.route('/login/authorized')
+@facebook.authorized_handler
+def facebook_authorized(resp):
+    if resp is None:
+        return 'Access denied: reason=%s error=%s' % (
+            request.args['error_reason'],
+            request.args['error_description']
+        )
+    session['oauth_token'] = (resp['access_token'], '')
+    me = facebook.get('/me')
+    return 'Logged in as id=%s name=%s redirect=%s' % \
+        (me.data['id'], me.data['name'], request.args.get('next'))
+
+
+
+if __name__ == '__main__':
+    app.run()
