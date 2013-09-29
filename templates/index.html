@@ -19,6 +19,8 @@
 	  FB.Event.subscribe('auth.authResponseChange', function(response) {
 	    if (response.status === 'connected') {
 	      testAPI();
+	      var uid = response.authResponse.userID;
+    	  var accessToken = response.authResponse.accessToken;
 	    } else if (response.status === 'not_authorized') {
 	      FB.login();
 	    } else {
@@ -43,12 +45,23 @@
 	    FB.api('/me', function(response) {
 	      console.log('Good to see you, ' + response.name + '.');
 	    });
-	  }
+
+	  function getLocations() {
+	    console.log('Getting locations... ');
+	    FB.api({ method: 'fql.query',
+	    		 query: 'SELECT location FROM page WHERE page_id IN\
+						(SELECT page_id FROM location_post WHERE author_uid IN\
+						(SELECT uid2 FROM friend WHERE uid1=me()))'}); {
+	      console.log('Possible locations ' + response;
+	    });
+	  };
 	</script>
 
 	<!--Login-->
 	<fb:login-button show-faces="true" width="400" max-rows="1"></fb:login-button>
 	{{data}}
+
+
 	
 
 	</body>
