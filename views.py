@@ -42,8 +42,8 @@ def index():
         sig = base64.urlsafe_b64decode(encoded_sig + "=" * ((4 - len(encoded_sig) % 4) % 4))
         data = base64.urlsafe_b64decode(payload + "=" * ((4 - len(payload) % 4) % 4))
 
-        json.loads(data)
-        user = facebook.get_access_token_from_code(data["code"], "", FACEBOOK_APP_ID. FACEBOOK_APP_SECRET)
+        data = json.loads(data)
+        user = facebook.get_access_token_from_code(data["code"], "", FACEBOOK_APP_ID, FACEBOOK_APP_SECRET)
     # user = facebook.get_user_from_cookie(request.cookies, FACEBOOK_APP_ID, FACEBOOK_APP_SECRET)
         if user:
             graph = facebook.GraphAPI(user["access_token"])
