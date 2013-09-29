@@ -4,53 +4,56 @@
 	</head>
 	
 	<body>
-	<div id="fb-root"></div>
-	<script>
-	  window.fbAsyncInit = function() {
-	  FB.init({
-	    appId      : '657737804244482', // App ID
-	    channelUrl : '//lit-harbor-9828.herokuapp.com/channel.html', // Channel File
-	    status     : true, // check login status
-	    cookie     : true, // enable cookies to allow the server to access the session
-	    xfbml      : true  // parse XFBML
-	  });
 
-	 
-	  FB.Event.subscribe('auth.authResponseChange', function(response) {
-	    if (response.status === 'connected') {
-	      testAPI();
-	    } else if (response.status === 'not_authorized') {
-	      FB.login();
-	    } else {
-	      FB.login();
-	    }
-	  });
-	  };
+	
+		<div id="fb-root"></div>
+			<script>
+			  window.fbAsyncInit = function() {
+			  FB.init({
+			    appId      : '657737804244482', // App ID
+			    channelUrl : '//lit-harbor-9828.herokuapp.com/channel.html', // Channel File
+			    status     : true, // check login status
+			    cookie     : true, // enable cookies to allow the server to access the session
+			    xfbml      : true  // parse XFBML
+			  });
 
-	  // Load the SDK asynchronously
-	  (function(d){
-	   var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-	   if (d.getElementById(id)) {return;}
-	   js = d.createElement('script'); js.id = id; js.async = true;
-	   js.src = "//connect.facebook.net/en_US/all.js";
-	   ref.parentNode.insertBefore(js, ref);
-	  }(document));
+			 
+			  FB.Event.subscribe('auth.authResponseChange', function(response) {
+			    if (response.status === 'connected') {
+			      testAPI();
+			    } else if (response.status === 'not_authorized') {
+			      FB.login();
+			    } else {
+			      FB.login();
+			    }
+			  });
+			  };
 
-	  // Here we run a very simple test of the Graph API after login is successful. 
-	  // This testAPI() function is only called in those cases. 
-	  function testAPI() {
-	    console.log('Welcome!  Fetching your information.... ');
-	    FB.api('/me', function(response) {
-	      console.log('Good to see you, ' + response.name + '.');
-	    });
-	  };
-	</script>
+			  // Load the SDK asynchronously
+			  (function(d){
+			   var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+			   if (d.getElementById(id)) {return;}
+			   js = d.createElement('script'); js.id = id; js.async = true;
+			   js.src = "//connect.facebook.net/en_US/all.js";
+			   ref.parentNode.insertBefore(js, ref);
+			  }(document));
 
-	<!--Login-->
+			  // Here we run a very simple test of the Graph API after login is successful. 
+			  // This testAPI() function is only called in those cases. 
+			  function testAPI() {
+			    console.log('Welcome!  Fetching your information.... ');
+			    FB.api('/me', function(response) {
+			      console.log('Good to see you, ' + response.name + '.');
+			    });
+			  };
+			</script>
+
+	<!-- Login -->
 	<h1> Friends in Far Places </h1>
 	<p> When traveling let friends be your guide </p>
-	<fb:login-button show-faces="true" width="400" max-rows="1"></fb:login-button></a>
-	
+
+	<fb:login-button autologoutlink="true" width="400" max-rows="1"></fb:login-button></a>
+	{{friends}}
 
 
 	
