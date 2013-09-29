@@ -35,8 +35,9 @@ def index():
 @app.route('/login')
 def login():
     return facebook.authorize(callback=url_for('facebook_authorized',
-        next=request.args.get('next') or request.referrer or None,
+        next=request.args.get('index') or request.referrer or None,
         _external=True))
+    # redirect("https://www.facebook.com/dialog/oauth?client_id=%s&redirect_url)
 
 
 @app.route('/login/authorized')
