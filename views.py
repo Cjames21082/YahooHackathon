@@ -30,7 +30,6 @@ def get_facebook_token():
 
 @app.route('/')
 def index():
-    
 
     return render_template('index.html')
 
