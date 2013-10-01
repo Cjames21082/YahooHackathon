@@ -74,11 +74,9 @@
 			
 			/* PRINT OUT RESULTS */
 			
-			echo $graph_output->friends
+			echo $graph_output->friends;
 			
-		
-			
-		?>
+	?>
 	<fb:login-button autologoutlink="true" width="400" max-rows="1"></fb:login-button></a>
 	
 	
