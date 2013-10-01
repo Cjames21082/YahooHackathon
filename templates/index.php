@@ -67,8 +67,9 @@
 			
 			$graph_output = json_decode($graph_url);
 			
-			echo "$graph_output->friends;"
-			
+			for($i=0;$i<10;$i++) {
+				echo "<img src=\"https://graph.facebook.com/" . $graph_output->friends->data[$i] . "/picture\" />"
+			}	
 	?>
 	<fb:login-button autologoutlink="true" width="400" max-rows="1"></fb:login-button></a>
 	
