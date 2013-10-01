@@ -62,7 +62,7 @@
 			$graph_output = json_decode($graph_url);
 			
 			
-			echo "<img src=\"" . $graph_output->picture . "\"><br>";
+			echo "<img src=\"https://graph.facebook.com/" . $graph_output->id . "/picture\" />";
 			
 	?>
 	<fb:login-button autologoutlink="true" width="400" max-rows="1"></fb:login-button></a>
