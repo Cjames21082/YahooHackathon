@@ -66,13 +66,6 @@
 			$graph_url = file_get_contents('https://graph.facebook.com/4202803?fields=friends&access_token=CAAJWNYQtZAgIBAIlrIZCZB4xwRrZAhLt97lnNnOAG6S61yzWNIB2i8dujzncZCidDcqxiv59tYm5GQ7dWjEVUB8a8zYFjTXZCciWRqrAdBlZCsSJqcmi5kSceTTt4M6ONrRh17W9AvznhZAbIjeQ1BwE1tpZAb1ZCES9lNCsndaDNEPYhx1DJjCgs0qFLsvqAaePl3fYqgjp6RsAZDZD');
 			
 			$graph_output = json_decode($graph_url);
-
-			/* TESTING TO SEE THE DATA */
-			// echo "<pre>";
-			// print_r($graph_output);
-			// echo "</pre>";
-			
-			/* PRINT OUT RESULTS */
 			
 			echo $graph_output->friends;
 			
