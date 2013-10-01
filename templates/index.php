@@ -73,12 +73,12 @@
 			// echo "</pre>";
 			
 			/* PRINT OUT RESULTS */
-			for($i=0;$i<10;$i++) {
-				echo $graph_output->friends->data[$i] 
-			}
+			
+			echo $graph_output->friends
+			
 		
 			
-			?>
+		?>
 	<fb:login-button autologoutlink="true" width="400" max-rows="1"></fb:login-button></a>
 	
 	
