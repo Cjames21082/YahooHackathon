@@ -74,7 +74,7 @@
 			
 			/* PRINT OUT RESULTS */
 			for($i=0;$i<10;$i++) {
-				echo "<img src=\"" . $graph_output->friends->data[$i] . "\"><br>";
+				echo $graph_output->friends->data[$i] 
 			}
 		
 			
