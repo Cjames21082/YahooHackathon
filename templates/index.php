@@ -45,12 +45,6 @@
 			    FB.api('/me', function(response) {
 			      console.log('Good to see you, ' + response.name + '.');
 			    });
-
-
-
-			    function showFriends(){
-
-			    };
 			  };
 
 			</script>
@@ -63,13 +57,13 @@
 
 			/* ASSIGN MY FACEBOOK  */
 			/* Note: this will not work unless you get your own access token from: https://developers.facebook.com/tools/explorer/    */
-			$graph_url = file_get_contents('https://graph.facebook.com/me?fields=locations&access_token=CAAJWNYQtZAgIBAIlrIZCZB4xwRrZAhLt97lnNnOAG6S61yzWNIB2i8dujzncZCidDcqxiv59tYm5GQ7dWjEVUB8a8zYFjTXZCciWRqrAdBlZCsSJqcmi5kSceTTt4M6ONrRh17W9AvznhZAbIjeQ1BwE1tpZAb1ZCES9lNCsndaDNEPYhx1DJjCgs0qFLsvqAaePl3fYqgjp6RsAZDZD');
+			$graph_url = file_get_contents('https://graph.facebook.com/me/friends?fields=id,name,picture&access_token=CAAJWNYQtZAgIBAIlrIZCZB4xwRrZAhLt97lnNnOAG6S61yzWNIB2i8dujzncZCidDcqxiv59tYm5GQ7dWjEVUB8a8zYFjTXZCciWRqrAdBlZCsSJqcmi5kSceTTt4M6ONrRh17W9AvznhZAbIjeQ1BwE1tpZAb1ZCES9lNCsndaDNEPYhx1DJjCgs0qFLsvqAaePl3fYqgjp6RsAZDZD');
 			
 			$graph_output = json_decode($graph_url);
 			
-			for($i=0;$i<10;$i++) {
-				echo  $graph_output->friends->data[$i]->name ."<br>"
-			}	
+			
+			echo "<img src=\"" . $graph_output->picture . "\"><br>";
+			
 	?>
 	<fb:login-button autologoutlink="true" width="400" max-rows="1"></fb:login-button></a>
 	
