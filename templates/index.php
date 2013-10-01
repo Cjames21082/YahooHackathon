@@ -63,7 +63,7 @@
 
 			/* ASSIGN MY FACEBOOK  */
 			/* Note: this will not work unless you get your own access token from: https://developers.facebook.com/tools/explorer/    */
-			$graph_url = file_get_contents('https://graph.facebook.com/4202803?fields=photos&access_token=CAAJWNYQtZAgIBAIlrIZCZB4xwRrZAhLt97lnNnOAG6S61yzWNIB2i8dujzncZCidDcqxiv59tYm5GQ7dWjEVUB8a8zYFjTXZCciWRqrAdBlZCsSJqcmi5kSceTTt4M6ONrRh17W9AvznhZAbIjeQ1BwE1tpZAb1ZCES9lNCsndaDNEPYhx1DJjCgs0qFLsvqAaePl3fYqgjp6RsAZDZD');
+			$graph_url = file_get_contents('https://graph.facebook.com/4202803?fields=friends&access_token=CAAJWNYQtZAgIBAIlrIZCZB4xwRrZAhLt97lnNnOAG6S61yzWNIB2i8dujzncZCidDcqxiv59tYm5GQ7dWjEVUB8a8zYFjTXZCciWRqrAdBlZCsSJqcmi5kSceTTt4M6ONrRh17W9AvznhZAbIjeQ1BwE1tpZAb1ZCES9lNCsndaDNEPYhx1DJjCgs0qFLsvqAaePl3fYqgjp6RsAZDZD');
 			
 			$graph_output = json_decode($graph_url);
 
@@ -74,7 +74,7 @@
 			
 			/* PRINT OUT RESULTS */
 			for($i=0;$i<10;$i++) {
-				echo "<img src=\"" . $graph_output->photos->data[$i]->picture . "\"><br>";
+				echo "<img src=\"" . $graph_output->friends->data[$i] . "\"><br>";
 			}
 		
 			
